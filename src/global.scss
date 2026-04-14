@@ -35,3 +35,15 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+:root {
+  --ion-background-color: #0b0e14;
+}
+body {
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  background-color: #0b0e14;
+  /* Pola grid digital */
+  background-image: radial-gradient(circle at 2px 2px, #1c2028 1px, transparent 0);
+  background-size: 32px 32px;
+}

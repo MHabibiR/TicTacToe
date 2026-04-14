@@ -1,27 +1,344 @@
-#container {
-  text-align: center;
+/* Global styles */
+:host {
+  --color-primary: #81ecff;
+  --color-secondary: #ff6b9b;
+  --color-surface: #0b0e14;
+  --color-surface-container: #1c2028;
+  --font-headline: 'Space Grotesk', sans-serif;
+}
 
+ion-content {
+  --background: transparent; 
+  background-color: #0b0e14;
+  position: relative;
+}
+
+h1, h2, ion-title {
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+p, ion-label {
+  font-family: var(--font-body);
+}
+
+
+/* Background Effects */
+.glow-top-left {
+  position: fixed;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(129, 236, 255, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glow-bottom-right {
+  position: fixed;
+  bottom: -100px;
+  right: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 107, 155, 0.2) 0%, transparent 70%);
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Text Styles */
+.neon-text-primary {
+  color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.8);
+}
+
+.neon-text-secondary {
+  color: var(--color-secondary);
+  text-shadow: 0 0 8px rgba(255, 107, 155, 0.8);
+}
+
+.header-title {
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-left: 0;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.toolbar-header {
+  position: relative;
+  align-items: center;
+}
+
+.toolbar-header .header-buttons {
+  align-items: center;
+}
+
+.mode-heading {
+  color: white;
+  margin-top: 40px;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
+.symbol-heading {
+  color: white;
+  margin-top: 40px;
+}
+
+.battle-heading {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+
+/* Cards & Buttons */
+.mode-card {
+  background: #1c2028;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #2a2e38;
+  transition: 0.2s;
+  
+  &:active { 
+    transform: scale(0.95); 
+  }
+  
+  ion-icon { 
+    font-size: 50px; 
+    margin-bottom: 10px; 
+  }
+  
+  h3 { 
+    color: white; 
+    font-weight: bold; 
+    margin: 0; 
+  }
+  
+  p { 
+    color: #a9abb3; 
+    font-size: 0.8rem; 
+    margin-top: 5px; 
+  }
+}
+
+.symbol-card {
+  background: #1c2028;
+  padding: 20px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  
+  ion-icon { 
+    font-size: 60px; 
+  }
+  
+  p { 
+    color: #a9abb3; 
+    font-weight: bold; 
+    margin-top: 10px; 
+  }
+}
+
+.active-card {
+  border-color: var(--color-primary) !important;
+  background: #252a34;
+}
+
+
+/* Game Board */
+.cell-button {
+  --background: #1c2028;
+  --border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 90px !important;
+  
+  &:active {
+    transform: scale(0.9);
+    filter: brightness(1.5);
+  }
+  
+  .symbol-text {
+    font-size: 3rem !important;
+    font-weight: 800;
+    line-height: 1;
+    display: block;
+    font-family: var(--font-headline);
+  }
+}
+
+.winning-line {
+  position: absolute;
+  background: var(--color-primary);
+  box-shadow: 0 0 15px var(--color-primary), 0 0 30px #00e3fd;
+  z-index: 10;
+  border-radius: 50px;
+}
+
+.tictactoe-grid-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Score Display */
+.score-label {
+  font-size: 0.6rem;
+  margin-bottom: 0;
+  
+  &.score-player-x {
+    color: #81ecff;
+  }
+  
+  &.score-draw {
+    color: #a9abb3;
+  }
+  
+  &.score-player-o {
+    color: #ff6b9b;
+  }
+}
+
+
+/* Winner Popup */
+.winner-modal-wrapper {
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 85%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.winner-modal {
+  background: rgba(28, 32, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid #81ecff;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(129, 236, 255, 0.4);
+  
+  h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  h1.draw-result {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+  
+  p {
+    color: #a9abb3;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
+/* Setting */
+.neon-popover {
+  --background: transparent;
+  --box-shadow: none;
+  --width: 240px;
 
-  margin: 0;
+  &::part(content) {
+    background: rgba(28, 32, 40, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid #81ecff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(129, 236, 255, 0.2);
+    overflow: hidden;
+  }
 }
 
-#container a {
-  text-decoration: none;
+.popover-content-inner {
+  padding: 20px;
+  
+  h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  .settings-row {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 12px;
+    
+    ion-icon { 
+      font-size: 20px; 
+    }
+  }
+  
+  span {
+    color: white;
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 10px;
+  }
+}
+
+.version-text {
+  font-size: 0.6rem;
+  color: #45484f;
+  margin: 10px 0 0 0;
+}
+
+
+/* Navigation Buttons */
+ion-button[fill="clear"] {
+  --color: #a9abb3 !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.quit-game-button {
+  --color: #45484f;
+}
+
+.navigation-footer {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+  position: relative;
+}
+
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
