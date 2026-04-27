@@ -53,6 +53,26 @@ export class HomePage {
       }
     }
 
+  /* Get Label untuk Player X */
+  getPlayerXLabel(): string {
+    if (this.gameMode === 'pve' && this.selectedSymbol === 'X') {
+      return 'YOU (X)';
+    } else if (this.gameMode === 'pve' && this.selectedSymbol === 'O') {
+      return 'COMPUTER (X)';
+    }
+    return 'PLAYER X';
+  }
+
+  /* Get Label untuk Player O */
+  getPlayerOLabel(): string {
+    if (this.gameMode === 'pve' && this.selectedSymbol === 'O') {
+      return 'YOU (O)';
+    } else if (this.gameMode === 'pve' && this.selectedSymbol === 'X') {
+      return 'COMPUTER (O)';
+    }
+    return 'PLAYER O';
+  }
+
   /* 2. Pilih Simbol  */
   startGame(symbol: 'X' | 'O') {
     this.selectedSymbol = symbol;

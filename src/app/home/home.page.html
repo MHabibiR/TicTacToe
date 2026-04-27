@@ -82,7 +82,7 @@
         <ion-row class="ion-align-items-center">
           <ion-col class="ion-text-center">
             <p class="score-label score-player-x">
-              {{ gameMode === 'pve' && selectedSymbol === 'X' ? 'YOU (X)' : 'PLAYER X' }}
+              {{ getPlayerXLabel() }}
             </p>
             <h2 class="neon-text-primary">{{ scores.userX }}</h2>
           </ion-col>
@@ -92,7 +92,7 @@
           </ion-col>
           <ion-col class="ion-text-center">
             <p class="score-label score-player-o">
-              {{ gameMode === 'pve' && selectedSymbol === 'O' ? 'YOU (O)' : 'PLAYER O' }}
+              {{ getPlayerOLabel() }}
             </p>
             <h2 class="neon-text-secondary">{{ scores.userO }}</h2>
           </ion-col>
