@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.Seirios.tictactoe;
 
 import com.getcapacitor.BridgeActivity;
 
