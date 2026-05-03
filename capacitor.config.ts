@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.Seirios.tictactoe',
-  appName: 'TicTacToe',
+  appName: 'Neon Arena',
   webDir: 'www'
 };
 

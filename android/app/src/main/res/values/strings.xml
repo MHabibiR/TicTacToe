@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">TicTacToe</string>
-    <string name="title_activity_main">TicTacToe</string>
+    <string name="app_name">Neon Arena</string>
+    <string name="title_activity_main">Neon Arena</string>
     <string name="package_name">com.Seirios.tictactoe</string>
     <string name="custom_url_scheme">com.Seirios.tictactoe</string>
 </resources>
